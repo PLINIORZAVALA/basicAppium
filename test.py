@@ -1,34 +1,34 @@
 from appium import webdriver
-import threading
+from appium.webdriver.common.appiumby import AppiumBy
+import time
 
-# Configuración para ambos dispositivos
-devices = [
-    {"udid": "R92W500PNSL", "port": 4723},
-    {"udid": "ABC123DEF", "port": 4725}
-]
+def run_test():
+    try:
+        print("Configurando capabilities...")
+        caps = {
+            "platformName": "Android",
+            "deviceName": "Android Device",
+            "udid": "R92W500PNSL",  # ¡Verifica que este UDID es correcto!
+            "appPackage": "com.android.settings",
+            "appActivity": ".Settings",
+            "automationName": "UiAutomator2",
+            "noReset": True
+        }
 
-def run_test(udid, port):
-    caps = {
-        "platformName": "Android",
-        "deviceName": "Device_" + udid,
-        "udid": udid,
-        "appPackage": "com.android.settings",
-        "appActivity": ".Settings",
-        "automationName": "UiAutomator2"
-    }
-    driver = webdriver.Remote(f'http://localhost:{port}/wd/hub', caps)
-    
-    # Ejemplo: Abrir WiFi Settings en ambos dispositivos
-    driver.find_element("xpath", "//*[contains(@text, 'Wi-Fi')]").click()
-    
-    driver.quit()
+        print("Inicializando driver...")
+        driver = webdriver.Remote('http://localhost:4723/wd/hub', caps)
+        
+        print("Abriendo configuración de WiFi...")
+        wifi_btn = driver.find_element(AppiumBy.XPATH, "//*[contains(@text, 'Wi-Fi')]")
+        wifi_btn.click()
+        time.sleep(3)
+        
+    except Exception as e:
+        print(f"ERROR durante la ejecución: {str(e)}")
+    finally:
+        if 'driver' in locals():
+            driver.quit()
+        print("Prueba finalizada")
 
-# Ejecutar en paralelo
-threads = []
-for device in devices:
-    t = threading.Thread(target=run_test, args=(device["udid"], device["port"]))
-    threads.append(t)
-    t.start()
-
-for t in threads:
-    t.join()
+if __name__ == "__main__":
+    run_test()
