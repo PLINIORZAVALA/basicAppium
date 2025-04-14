@@ -1,0 +1,25 @@
+WINDONS: CMD 
+Comando para visualizar la ruta. 
+    C:\Users\USUARI0>where adb
+    C:\Users\USUARI0\AppData\Local\Android\Sdk\platform-tools\adb.exe
+Comando para verificar proceso
+    C:\Users\USUARI0>taskkill /F /IM adb.exe
+    Correcto: se terminó el proceso "adb.exe" con PID 15948.
+Comando para compartir utilidades con WSL:
+    C:\Users\USUARI0>adb -a nodaemon server
+LINUX: BASH
+Comando para vincular ruta:
+    (venv) plinior@DESKTOP-00F90H8:~/Appium/venv$ echo "alias adb='/mnt/c/Users/USUARI0/AppData/Local/Android/Sdk/platform-tools/adb.exe'" >> ~/.bashrc
+Comando para desvinular todo el entorno virtual:
+    (venv) plinior@DESKTOP-00F90H8:~/Appium/venv$ source ~/.bashrc
+Comando para inicializar con el servidor:
+    plinior@DESKTOP-00F90H8:~/Appium/venv$ adb kill-server && adb start-server
+    cannot connect to daemon at tcp:5037: cannot connect to 127.0.0.1:5037: No se puede establecer una con
+    exión ya que el equipo de destino denegó expresamente dicha conexión. (10061)
+    * daemon not running; starting now at tcp:5037
+    * daemon started successfully
+Comando para validar que se tiene control del dispositivo desde WSL:
+    plinior@DESKTOP-00F90H8:~/Appium/venv$ adb devices
+    List of devices attached      
+    NSXDU17627001880        device
+    R92W500PNSL     device
