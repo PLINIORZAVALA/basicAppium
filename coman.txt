@@ -23,3 +23,15 @@ Comando para validar que se tiene control del dispositivo desde WSL:
     List of devices attached      
     NSXDU17627001880        device
     R92W500PNSL     device
+
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+Comando para ejecutar: 
+    plinior@DESKTOP-00F90H8:~/Appium/venv$ npx appium -p 4723 --use-plugins=images,execute-driver --relaxed-security
+
+Ejecución de dispositivo SCRCPY: 
+    scrcpy --serial R92W500PNSL
+    scrcpy --serial NSXDU17627001880 
+
+Ejecución para APPIUM:
+    appium -p 4723 --udid R92W500PNSL
+    appium -p 4725 --udid ABC123DEF
