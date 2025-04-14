@@ -1,0 +1,9 @@
+{
+    "python.analysis.extraPaths": [
+        "/home/plinior/Appium/venv/lib/python3.9/site-packages"
+    ],
+    "python.autoComplete.extraPaths": [
+        "/home/plinior/Appium/venv/lib/python3.9/site-packages"
+    ],
+    "python.linting.pylintPath": "/home/plinior/Appium/venv/bin/pylint"
+}
